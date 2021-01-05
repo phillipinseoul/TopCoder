@@ -23,17 +23,12 @@ public:
         {
             int fromL = fromId[i];
             int toL = toId[i];
-            int space = capacities[toL] - bottles[toL];    // Left space in destination bottle
 
-            if (space >= bottles[i]) {          // case 1: Enough space
-                int vol = bottles[fromL];
-                bottles[toL] += vol;
-                bottles[fromL] = 0;
-            } else {                            // case 2: Space exceeded!
-                int vol = space;
-                bottles[toL] += vol;
-                bottles[fromL] -= vol;
-            }
+            // Simplify code by using 'min' instead of if-else
+            int vol = min(bottles[fromL], capacities[toL] - bottles[toL]);
+
+            bottles[fromL] -= vol;
+            bottles[toL] += vol;
         }
         return bottles;
     }
