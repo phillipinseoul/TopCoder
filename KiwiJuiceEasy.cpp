@@ -3,21 +3,7 @@
 // Stop when: i) fromId[i] = empty ii) toId[i] = full
 // Return: int[] -> i-th: amount of juice in i-th bottle'
 
-/*
-    for (int i = 0; i < M; i++){
-        int toL = toId[i];
-        int fromL = fromId[i];
-
-        if (bottles[toL] + bottles[fromL] >= 10){
-            
-        }
-        else {
-
-        }
-    }
-
-*/
-
+# include <algorithm>
 # include <vector>
 
 using namespace std;
@@ -29,7 +15,7 @@ public:
     // function 'thePouring'
     // input: capabilties, bottles, fromId, toId 
     // output: final amount of juice in each bottle
-    vector<int> thePouring(vector<int> capabilities,
+    vector<int> thePouring(vector<int> capacities,
                             vector<int> bottles, vector<int> fromId,
                             vector<int> toId)
     {
@@ -37,7 +23,7 @@ public:
         {
             int fromL = fromId[i];
             int toL = toId[i];
-            int space = capabilities[toL] - bottles[toL];    // Left space in destination bottle
+            int space = capacities[toL] - bottles[toL];    // Left space in destination bottle
 
             if (space >= bottles[i]) {          // case 1: Enough space
                 int vol = bottles[fromL];
