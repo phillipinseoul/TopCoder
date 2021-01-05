@@ -8,7 +8,7 @@
         int toL = toId[i];
         int fromL = fromId[i];
 
-        if (bottles[toL] + fromL >= 10){
+        if (bottles[toL] + bottles[fromL] >= 10){
             
         }
         else {
@@ -17,6 +17,41 @@
     }
 
 */
+
+# include <vector>
+
+using namespace std;
+
+class KiwiJuiceEasy
+{
+public:
+
+    // function 'thePouring'
+    // input: capabilties, bottles, fromId, toId 
+    // output: final amount of juice in each bottle
+    vector<int> thePouring(vector<int> capabilities,
+                            vector<int> bottles, vector<int> fromId,
+                            vector<int> toId)
+    {
+        for (int i=0; i < fromId.size(); i++)
+        {
+            int fromL = fromId[i];
+            int toL = toId[i];
+            int space = capabilities[toL] - bottles[toL];    // Left space in destination bottle
+
+            if (space >= bottles[i]) {          // case 1: Enough space
+                int vol = bottles[fromL];
+                bottles[toL] += vol;
+                bottles[fromL] = 0;
+            } else {                            // case 2: Space exceeded!
+                int vol = space;
+                bottles[toL] += vol;
+                bottles[fromL] -= vol;
+            }
+        }
+        return bottles;
+    }
+};
 
 
 
